@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 from typing import Optional
-from fastapi import UploadFile
 
 class ChatRequest(BaseModel):
     session_id: str
@@ -12,8 +11,3 @@ class ChatResponse(BaseModel):
 
 class GetChat(BaseModel):
     session_id: str
-    
-class ChatImageRequest(BaseModel):
-    session_id: str
-    message: Optional[str] = ""
-    image: UploadFile
