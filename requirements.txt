@@ -2,8 +2,6 @@ fastapi
 uvicorn
 langchain
 langchain-community
-sentence-transformers
-faiss-cpu
 python-multipart
 pydantic
 langchain_huggingface
