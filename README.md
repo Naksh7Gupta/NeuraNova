@@ -1,32 +1,52 @@
-# LangGraph Chatbot with HuggingFace LLM
+# NeuraNova
 
-A simple AI chatbot built using **LangGraph** and **HuggingFace LLMs**, with memory persistence for conversation state. Perfect for building modular and stateful AI assistants.
+A small stateful chatbot built with **LangGraph** and a hosted Hugging Face model.
+It keeps conversation memory per session and exposes a FastAPI server.
 
----
+This is a learning project for graph-based chat state, not a production agent platform.
 
 ## Features
 
-- 🧠 **Stateful Chat:** Tracks conversation state using LangGraph.
-- 🤖 **LLM-powered Responses:** Uses HuggingFace `openai/gpt-oss-20b` model for AI replies.
-- 💾 **Memory Persistence:** Stores conversation history with `MemorySaver`.
-- ⚡ **Modular & Clean:** Easy to replace LLM or add new nodes to the chat graph.
+- Session-based chat memory with LangGraph `MemorySaver`
+- Hugging Face chat model via LangChain
+- FastAPI routes for sending messages and fetching a session history
 
----
+## Tech stack
 
-## Tech Stack
+- Python 3.11+
+- LangGraph
+- LangChain Hugging Face
+- FastAPI + Uvicorn
 
-- **Python 3.11+**
-- **LangGraph** – Manage chat states and flows
-- **LangChain-HuggingFace** – LLM integration
-- **HuggingFace Endpoint** – Provider for AI responses
-- **dotenv** – Environment variable management
-
----
-
-## Installation
-
-1. Clone the repository:
+## Setup
 
 ```bash
-git clone https://github.com/<your-username>/langgraph-chatbot.git
-cd langgraph-chatbot
+git clone https://github.com/Naksh7Gupta/NeuraNova.git
+cd NeuraNova
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+```
+
+Put a Hugging Face token in `.env`:
+
+```bash
+HUGGINGFACEHUB_API_TOKEN=your_huggingface_token_here
+```
+
+## Run
+
+```bash
+uvicorn server:app --reload
+```
+
+## Notes
+
+- Memory is in-process. Restarting the server clears chat history.
+- The model ID lives in `main.py` and can be swapped there.
+- No RAG and no tools yet. The graph is one chat node.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
